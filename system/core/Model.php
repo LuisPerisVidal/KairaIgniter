@@ -66,3 +66,5 @@ class CI_Model {
 	}
 
 }
+
+include_once('Model_kaira.php');

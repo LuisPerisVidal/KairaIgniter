@@ -94,3 +94,5 @@ class CI_Controller {
 	}
 
 }
+
+include_once('Controller_kaira.php');

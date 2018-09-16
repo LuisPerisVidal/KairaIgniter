@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class KA_Model extends CI_Model{
 
 
-	public function get($input, $param_data = null){
+	public function get($input=null, $param_data = null){
 
 		$pull_data = ($param_data==null) ? $this->data["get"] : $param_data;
 
@@ -21,6 +21,18 @@ class KA_Model extends CI_Model{
 	 * @param	@row_array	Devuelve la primera fila (Genial para el get)
 	*/
 	public function get_list($input=null, $param_data = null, $row_array = false){
+
+		// Si se manda el JSON por POST en la variable ka_json
+		if(isset($_POST["ka_json"]) ){
+
+			$input = json_decode($_POST["ka_json"], true);
+
+		// Comprueba si es un JSON el $input
+		}elseif( is_string($input) && is_array(json_decode($input, true)) ){
+
+			$input = json_decode($input, true);
+
+		}
 
 		$pull_data = ($param_data==null) ? $this->data["get_list"] : $param_data;
 
@@ -93,7 +105,19 @@ class KA_Model extends CI_Model{
 
 	}
 
-	public function add($input, $param_data=null){
+	public function add($input=null, $param_data=null){
+
+		// Si se manda el JSON por POST en la variable ka_json
+		if(isset($_POST["ka_json"]) ){
+
+			$input = json_decode($_POST["ka_json"], true);
+
+		// Comprueba si es un JSON el $input
+		}elseif( is_string($input) && is_array(json_decode($input, true)) ){
+
+			$input = json_decode($input, true);
+
+		}
 
 		// Comprobamos el origen de los datos
 		$pull_data = ($param_data==null) ? $this->data["add"] : $param_data;
@@ -127,7 +151,19 @@ class KA_Model extends CI_Model{
 	}
 
 
-	public function edit($input, $param_data=null){
+	public function edit($input=null, $param_data=null){
+
+		// Si se manda el JSON por POST en la variable ka_json
+		if(isset($_POST["ka_json"]) ){
+
+			$input = json_decode($_POST["ka_json"], true);
+
+		// Comprueba si es un JSON el $input
+		}elseif( is_string($input) && is_array(json_decode($input, true)) ){
+
+			$input = json_decode($input, true);
+
+		}
 
 		// Comprobamos el origen de los datos
 		$pull_data = ($param_data==null) ? $this->data["edit"] : $param_data;
@@ -196,7 +232,19 @@ class KA_Model extends CI_Model{
 	}
 
 
-	public function delete($input, $param_data=null){
+	public function delete($input=null, $param_data=null){
+
+		// Si se manda el JSON por POST en la variable ka_json
+		if(isset($_POST["ka_json"]) ){
+
+			$input = json_decode($_POST["ka_json"], true);
+
+		// Comprueba si es un JSON el $input
+		}elseif( is_string($input) && is_array(json_decode($input, true)) ){
+
+			$input = json_decode($input, true);
+
+		}
 
 		$pull_data = ($param_data==null) ? $this->data["delete"] : $param_data;
 

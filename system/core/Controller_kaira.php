@@ -4,7 +4,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class KA_API_Controller extends CI_Controller {
 
+	public function __construct(){
+		Parent::__construct();
+
+		$this->load->library("Apilib");
+	}
+
 	public function _remap($reference, $method=null){
+
+
 		$method = $method[0];
 	
 		// Comprueba si el reference es válido
@@ -33,8 +41,7 @@ class KA_API_Controller extends CI_Controller {
 
 
 				}else{
-					return false;
-					// No existe
+					$this->apilib->error("Error a la hora de ejecutar el modelo");
 				}
 
 
@@ -52,19 +59,18 @@ class KA_API_Controller extends CI_Controller {
 				}else{
 					// Se ejecuta la función
 					$tmp = $this->{$this->model_name}->{$method}($this->input->post());
-					print_r($tmp);
-
+					$this->apilib->data($tmp);
 				}
 
 			}else{
-				//				return false;
+				$this->apilib->error("No existe el method");
 			}
 
 			
 		}else{
-//			return false;
+			$this->apilib->error("No existe el reference");
 		}
-
+		$this->apilib->generate(true);
 
 	}
 
